@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://ra4gg4m6615v"]
+
+[ext_resource type="Script" path="res://Scripts/card.gd" id="1_g52c8"]
+[ext_resource type="Texture2D" uid="uid://dpiyr30v2p2cv" path="res://Assets/Card Templates/Kardz_Red_Template.png" id="1_vs3tg"]
+[ext_resource type="Texture2D" uid="uid://bxxague8gsflx" path="res://Assets/Card Templates/Kardz_Default_CardImage.png" id="2_wy50e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_odpdo"]
+font_size = 12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojhjr"]
+size = Vector2(80, 128)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_g52c8")
+
+[node name="BaseCardSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vs3tg")
+
+[node name="CardImage" type="Node2D" parent="."]
+
+[node name="CardImageSprite" type="Sprite2D" parent="CardImage"]
+position = Vector2(0, 13)
+texture = ExtResource("2_wy50e")
+
+[node name="StatsDisplay" type="Node2D" parent="."]
+position = Vector2(-32, 41)
+
+[node name="AttackLabel" type="Label" parent="StatsDisplay"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="HealthLabel" type="Label" parent="StatsDisplay"]
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="CardName" type="Node2D" parent="."]
+position = Vector2(-32, -56)
+
+[node name="NameLabel" type="Label" parent="CardName"]
+offset_right = 64.0
+offset_bottom = 32.0
+text = "Card Name"
+label_settings = SubResource("LabelSettings_odpdo")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_ojhjr")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

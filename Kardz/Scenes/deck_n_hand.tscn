@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://pljg2twmv3ss"]
+
+[ext_resource type="Script" path="res://Scripts/deck_n_hand.gd" id="1_3pdag"]
+[ext_resource type="PackedScene" uid="uid://epunxrqwf5qb" path="res://Scenes/Hand.tscn" id="2_xdd5b"]
+
+[node name="DeckNHand" type="Node2D"]
+script = ExtResource("1_3pdag")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hand" parent="CanvasLayer" instance=ExtResource("2_xdd5b")]
+position = Vector2(320, 1200)
+
+[node name="DrawButton1" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "CREATE ME A CARD"
+
+[node name="DrawButton2" type="Button" parent="."]
+offset_top = 34.0
+offset_right = 156.0
+offset_bottom = 65.0
+text = "CREATE ME A CARD"
+
+[connection signal="pressed" from="DrawButton1" to="." method="_on_draw_button_pressed"]
+[connection signal="pressed" from="DrawButton2" to="." method="_on_draw_button_2_pressed"]
